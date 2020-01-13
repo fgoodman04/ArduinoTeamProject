@@ -4,12 +4,12 @@
  * 
  */
 
-int laser = 13;
+//int laser = 13;
 int receiver = 2;
 
 void setup() {
   //provides output to the laser
-  pinMode(laser, OUTPUT);
+  //pinMode(laser, OUTPUT);
 
   //initializes serial communication at 9600 bits per second
   Serial.begin(9600);
