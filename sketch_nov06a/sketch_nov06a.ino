@@ -4,20 +4,20 @@
  * 
  */
 
-int motorPin = 13; 
+int servoPin = 8; 
 
 void setup() {
   //sets the pin to output for the motor
-  pinMode(motorPin, OUTPUT);
-
+  pinMode(servoPin, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
   //turns the motor on for 1 sec
-  digitalWrite(motorPin, HIGH);
+  digitalWrite(servoPin, HIGH);
   delay(1000);
 
   //turns the motor off for 1 sec
-  digitalWrite(motorPin, LOW);
+  digitalWrite(servoPin, LOW);
   delay(1000);
 }
