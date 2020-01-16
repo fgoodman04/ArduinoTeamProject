@@ -4,7 +4,11 @@
  * 
  */
 
-int servoPin = 8; 
+#include <Stepper.h>
+
+#define STEPS 32
+
+Stepper stepperMotor(STEPS, 8, 10, 9, 11);
 
 void setup() {
   //sets the pin to output for the motor
@@ -16,6 +20,8 @@ void loop() {
   //turns the motor on for 1 sec
   digitalWrite(servoPin, HIGH);
   delay(1000);
+
+  
 
   //turns the motor off for 1 sec
   digitalWrite(servoPin, LOW);
