@@ -1,29 +1,29 @@
 
 /* Programmers: Luke Marchand & Faith Goodman
- * Date: 1.6.20
- * 
- */
+   Date: 1.6.20
 
+*/
+
+// Includes the stepper motor library for use in our program
 #include <Stepper.h>
 
 #define STEPS 32
 
 Stepper stepperMotor(STEPS, 8, 10, 9, 11);
 
+int val = 0;
+
 void setup() {
   //sets the pin to output for the motor
-  pinMode(servoPin, OUTPUT);
+  stepperMotor.setSpeed(700);
   Serial.begin(9600);
 }
 
 void loop() {
-  //turns the motor on for 1 sec
-  digitalWrite(servoPin, HIGH);
-  delay(1000);
-
-  
-
-  //turns the motor off for 1 sec
-  digitalWrite(servoPin, LOW);
-  delay(1000);
+  if (Serial.available() > 0)
+  {
+    val = Serial.parseInt();
+    stepperMotor.step(val);
+    Serial.println(val);
+  }
 }
