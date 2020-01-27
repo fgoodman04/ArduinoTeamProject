@@ -43,20 +43,22 @@ void loop() {
 
   if (money == 0){
     lcd.clear();
-    lcd.print("Welcome");
+    lcd.print("Welcome ");
   }
 
   if (receiverValue == LOW && isLaserDetected == true){
     isLaserDetected = false;
     money = money + .25;
     lcd.clear();
-    lcd.print("$" + int(money));
+    lcd.print("$");
+    lcd.print(money);
   }
   else if (receiverValue == HIGH && isLaserDetected == false) {
     isLaserDetected = true;
   }
 
-  if (button == HIGH && money >= .75){
+  if (buttonState == HIGH && money >= .75){
+    money = money - .75;
     stepperMotor.step(2048);
   }
 
