@@ -42,12 +42,14 @@ void loop() {
   int buttonState = digitalRead(button);
 
   if (money == 0){
+    lcd.clear();
     lcd.print("Welcome");
   }
 
   if (receiverValue == LOW && isLaserDetected == true){
     isLaserDetected = false;
     money = money + .25;
+    lcd.clear();
     lcd.print("$" + int(money));
   }
   else if (receiverValue == HIGH && isLaserDetected == false) {
