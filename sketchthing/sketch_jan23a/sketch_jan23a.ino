@@ -20,6 +20,7 @@ int button = 2;
 float money = 0;
 
 bool isLaserDetected = true;
+bool welcome = true;
 
 void setup() {
   // put your setup code here, to run once:
@@ -41,9 +42,10 @@ void loop() {
   int receiverValue = digitalRead(receiver);
   int buttonState = digitalRead(button);
 
-  if (money == 0){
+  if (money == 0 && welcome == false){
     lcd.clear();
     lcd.print("Welcome ");
+    welcome = true;
   }
 
   if (receiverValue == LOW && isLaserDetected == true){
@@ -52,6 +54,7 @@ void loop() {
     lcd.clear();
     lcd.print("$");
     lcd.print(money);
+    welcome = false;
   }
   else if (receiverValue == HIGH && isLaserDetected == false) {
     isLaserDetected = true;
@@ -59,7 +62,12 @@ void loop() {
 
   if (buttonState == HIGH && money >= .75){
     money = money - .75;
+    lcd.clear();
+    lcd.print("Dispensing...");
     stepperMotor.step(2048);
+    lcd.clear();
+    lcd.print("$");
+    lcd.print(money);
   }
 
   //adds delay for stability
