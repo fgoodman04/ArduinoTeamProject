@@ -41,6 +41,8 @@ void loop() {
   int receiverValue = digitalRead(receiver);
   int buttonState = digitalRead(button);
 
+  Serial.println(buttonState);
+
   if (money == 0 && welcome == false){
     lcd.clear();
     lcd.print("Welcome ");
@@ -63,7 +65,7 @@ void loop() {
     money = money - .75;
     lcd.clear();
     lcd.print("Dispensing...");
-    stepperMotor.step(2048);
+    stepperMotor.step(-2048);
     lcd.clear();
     lcd.print("$");
     lcd.print(money);
